@@ -25,12 +25,11 @@ const User = Conn.define('user', {
 });
 
 // set the relation, that User has friends that are Users
-// const UserFriend = Conn.define('user_friend');
 User.belongsToMany(User, { as: 'Friends', through: 'UserFriend' });
 
 // create DB
 Conn.sync({force: true}).then(() => {
-  for (var i = 0; i < Faker.random.number(15); i++) {
+  for (let i = 0; i < Faker.random.number(15); i++) {
     // create some users
     User.create({
       name: Faker.name.findName()
@@ -38,9 +37,12 @@ Conn.sync({force: true}).then(() => {
       // search all users
       User.findAll().then((allUsers) => {
         // to find one random user
-        for (var j = 0; j < Faker.random.number(i); j++) {
+        for (let j = 0; j < Faker.random.number(i); j++) {
           // and add it as a friend
-          user.addFriend(allUsers[j]);
+          const friend = allUsers[j];
+          if(friend.id !== user.id) {
+            user.addFriend(friend);
+          }
         }
       })
     });
