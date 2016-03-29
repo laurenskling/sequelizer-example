@@ -1,27 +1,5 @@
 import Sequelize from 'sequelize';
 import Faker from 'faker';
-var util = require('util');
-
-const shuffle = (array) => {
-    let counter = array.length;
-    // While there are elements in the array
-    while (counter > 0) {
-        // Pick a random index
-        let index = Math.floor(Math.random() * counter);
-        // Decrease counter by 1
-        counter--;
-        // And swap the last element with it
-        let temp = array[counter];
-        array[counter] = array[index];
-        array[index] = temp;
-    }
-    return array;
-};
-
-const getSomeRandomFromArray = (array, times = 1) => {
-  array = shuffle(array);
-  return array.splice(0, times);
-};
 
 const Conn = new Sequelize(
   'sequelize', // db name
@@ -60,9 +38,10 @@ Conn.sync({force: true}).then(() => {
       // search all users
       User.findAll().then((allUsers) => {
         // to find one random user
-        const randomUsers = getSomeRandomFromArray(allUsers, Faker.random.number(5));
-        // and add it as a friend
-        user.addFriend(randomUsers);
+        for (var j = 0; j < Faker.random.number(i); j++) {
+          // and add it as a friend
+          user.addFriend(allUsers[j]);
+        }
       })
     });
   }
