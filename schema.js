@@ -46,7 +46,6 @@ var userType = new GraphQLObjectType({
       type: GraphQLString,
       description: `The name of the user`,
       resolve(user) {
-        console.log(user);
         return user.name;
       }
     },
