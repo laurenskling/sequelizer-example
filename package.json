@@ -1,5 +1,5 @@
 {
-  "name": "sequelize-example",
+  "name": "sequelizer-example",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
@@ -18,5 +18,9 @@
   },
   "devDependencies": {},
   "keywords": [],
-  "description": ""
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/laurenskling/sequelizer-example"
+  }
 }
